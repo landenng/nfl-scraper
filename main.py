@@ -73,16 +73,16 @@ def get_stats(d: dict, k: str, soup: BeautifulSoup) -> list:
             else: data[i].append((str(player_stats[i - 2].string).replace(',', '')))
     return list(zip(*data))
 
-def get_csv(stats: list, cols: dict, curr: int) -> None:
+def get_csv(stats: list, cols: dict, i: int) -> None:
     print()
     print('-' * 120)
-    print(list(cols)[curr].upper())
-    df = pd.DataFrame(stats, columns = list(cols.values())[curr])
+    print(list(cols)[i].upper())
+    df = pd.DataFrame(stats, columns = list(cols.values())[i])
     df.index.name = 'RK'
     df.index += 1
     print(df)
     print('-' * 120)
-    df.to_csv(f'./data/{list(cols)[curr]}.csv')
+    df.to_csv(f'./data/{list(cols)[i]}.csv')
 
 if __name__ == '__main__':
     main()
